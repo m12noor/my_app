@@ -44,7 +44,7 @@ function Services() {
                         >
                             {/* static image */}
                             <img
-                                src="src\assets\cardimg1.png"
+                                src="public\cardimg1.png"
                                 alt=""
                                 className="mb-2 w-24 h-24 object-contain"
                             />
