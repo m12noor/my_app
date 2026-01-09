@@ -1,0 +1,135 @@
+1- UseEffect Hook
+It is used for use of side effect in React like api calling, Timers, Subscriptions
+Syntax:
+useEffect(() =>{ 
+}, []) 
+
+
+2- fetchAPI (Get Requests)
+purpose:get data from the server
+flow:  
+   1-fetch("API_URL");  //It returns promise
+   2-.then (res=> res.json()); //convert response into json 
+   3-.then (data =>do sometjing with data)
+   4-.catch(err => handle error)
+
+
+3- React State(useState), Loading State, Error State:
+Store the data in component and update the UI
+Example:
+const [services, setServices]= useState([])  //initially empty array
+//loading state :to load load data from api
+const [loading, setLoading] = useState(true)
+//error state:if api fails than show it 
+const [error,setError] = useState(null)
+
+
+4-Dynamic Rendering(map()):
+array of objeco ko component k element me convert krna 
+
+service.map(service =>(
+<div key={service.id}>{service.name}</div>
+))
+
+Step-wise Explanation
+
+Component render hota hai → useEffect trigger hota hai.
+
+API call start hoti hai → loading = true
+
+Agar API successful → data state me store hota hai (setServices(data)) → component re-render
+
+Agar API fail → error state update
+
+loading = false → user ko loading message hata ke data ya error dikhaye
+
+services.map() → cards dynamically render hote hain
+----------------------------------------------------------------------------------------------
+
+
+This is error handling in JavaScript.
+
+try → the code we want to run normally (API call)
+
+catch → runs if any error occurs in try
+
+finally → runs always, whether there’s an error or not. Useful for stopping loading state.
+
+fetch() is a built-in function to call APIs.
+
+await pauses the function until the fetch returns a response.
+
+This is a GET request by default.
+
+The API response is raw HTTP data.
+
+response.json() parses JSON into a JavaScript object/array.
+
+await ensures we wait until parsing finishes.
+
+data is an array of 100 posts.
+
+slice(0, 10) takes only first 10 items.
+
+setProjects() stores them in the state so React can render the table dynamically.
+
+console.log(err) → logs the error in browser console (for debugging)
+
+setError(err.message) → sets error message in state, so UI can display it.
+
+
+Component Mount
+       |
+       v
+  useEffect runs
+       |
+       v
+  fetchProjects() called
+       |
+       v
+  setLoading(true) → UI shows "Loading..."
+       |
+       v
+   API Call: fetch(...)
+       |
+       v
+   +--------------------------+
+   |                          |
+ Success                     Error
+   |                          |
+   v                          v
+parse JSON                  catch(err)
+   |                          |
+setProjects(data)            setError(err.message)
+   |                          |
+   +----------+---------------+
+              |
+        finally { setLoading(false) }
+              |
+              v
+       Loading stops → React re-renders
+              |
+       +------------------+
+       |                  |
+    if error → show error  |
+    else → show table data |
+
+
+Explanation of Diagram
+
+Component Mount → useEffect runs once.
+
+Loading State is set → "Loading..." appears.
+
+API Call starts → waiting for server response.
+
+Two possible paths:
+
+Success: Data fetched, parsed, and stored in projects → table is rendered.
+
+Error: Network issue or bad response → error message stored → shown in red.
+
+Finally: setLoading(false) runs → stops showing "Loading...".
+
+React re-renders based on current state → shows table or error.
+
