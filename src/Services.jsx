@@ -6,20 +6,20 @@ function Services() {
     // loading state
     const [loading, setLoading] = useState(true);
 
-    
+
     useEffect(() => {
         fetch("https://dummyjson.com/products")
-            .then((res) => res.json()) 
+            .then((res) => res.json())
             .then((data) => {
-                console.log("API DATA:", data); 
-                setServices(data.products.slice(0, 3)); 
-                setLoading(false); 
+                console.log("API DATA:", data);
+                setServices(data.products.slice(0, 3));
+                setLoading(false);
             })
             .catch((error) => {
                 console.error("Services API error:", error);
                 setLoading(false);
             });
-    }, []); 
+    }, []);
 
     return (
         <div className="mb-20">
@@ -32,7 +32,7 @@ function Services() {
                 {/* loading text */}
                 {loading && <p>Loading services...</p>}
 
-                
+
                 {!loading &&
                     services.length > 0 &&
                     services.map((item) => (
@@ -44,7 +44,7 @@ function Services() {
                         >
                             {/* static image */}
                             <img
-                                src="cardimg1.png"
+                                src="src\assets\cardimg1.png"
                                 alt=""
                                 className="mb-2 w-24 h-24 object-contain"
                             />
