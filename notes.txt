@@ -44,6 +44,7 @@ Agar API fail → error state update
 loading = false → user ko loading message hata ke data ya error dikhaye
 
 services.map() → cards dynamically render hote hain
+<<<<<<< HEAD
 
 
 ** useEffect +asynch Function:
@@ -52,6 +53,8 @@ Aynch: meaning is that we can use await in that function so that it waits for th
 
 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
 
+=======
+>>>>>>> 5f95a22d7716f211fe09664ee51718e88a19fceb
 ----------------------------------------------------------------------------------------------
 
 
