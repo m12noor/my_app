@@ -1,9 +1,24 @@
-function Header() {
+function Header({ isLoggedIn, userEmail, onLogin, onLogout }) {
+
+    const handleLoginClick = () => {
+        const email = prompt("Enter your email:");
+        const password = prompt("Enter your password:");
+
+        if (email && password) {
+            onLogin(email, password);
+        }
+    };
+
     return (
         <header className="bg-blue-800 text-white">
             <div className="max-w-7xl mx-auto px-10 py-4 flex justify-between items-center">
-                <h1 className="text-2xl font-bold hover:text-blue-950">TechNova</h1>
-                <div className="flex  items-center gap-12">
+
+                <h1 className="text-2xl font-bold hover:text-blue-950">
+                    TechNova
+                </h1>
+
+                <div className="flex items-center gap-12">
+
                     <nav className="px-4">
                         <ul className="flex gap-6 list-none m-0 p-0">
                             <li className="hover:text-blue-950 px-4 cursor-pointer font-bold">Home</li>
@@ -11,7 +26,26 @@ function Header() {
                             <li className="hover:text-blue-950 px-4 cursor-pointer font-bold">Contact</li>
                         </ul>
                     </nav>
-                    <button className="bg-blue-800 px-6 py-2 rounded border border-white hover:bg-blue-950 font-bold" >Login</button>
+
+                    {isLoggedIn ? (
+                        <div className="flex items-center gap-4">
+                            <span className="text-sm">{userEmail}</span>
+
+                            <button
+                                onClick={onLogout}
+                                className="bg-blue-800 px-6 py-2 rounded border border-white hover:bg-blue-950 font-bold"
+                            >
+                                Logout
+                            </button>
+                        </div>
+                    ) : (
+                        <button
+                            onClick={handleLoginClick}
+                            className="bg-blue-800 px-6 py-2 rounded border border-white hover:bg-blue-950 font-bold"
+                        >
+                            Login
+                        </button>
+                    )}
                 </div>
 
             </div>
